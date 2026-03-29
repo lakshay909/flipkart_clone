@@ -1,4 +1,5 @@
 const orderService = require('../services/orderService');
+const { sendOrderConfirmationEmail } = require('../utils/sendEmail');
 
 // Hardcoded userId for now (will be replaced with auth middleware later)
 const userId = 1;
@@ -9,8 +10,23 @@ const userId = 1;
  */
 const createOrder = async (req, res) => {
   try {
-    const { shipping_address } = req.body;
+    const { shipping_address, user_email } = req.body;
     const order = await orderService.processNewOrder(userId, shipping_address);
+
+    // ── Send confirmation email (fire-and-forget, never blocks the order) ──
+    const recipientEmail = user_email || process.env.EMAIL_USER;
+    try {
+      await sendOrderConfirmationEmail(recipientEmail, {
+        orderId: order.id || order.order_id,
+        totalAmount: order.total_amount,
+        shippingAddress: shipping_address,
+        items: order.items || [],
+      });
+    } catch (emailErr) {
+      // Email failed — log it but do NOT fail the order response
+      console.error('⚠️  Order confirmation email failed (order still created):', emailErr.message);
+    }
+
     res.status(201).json(order);
   } catch (err) {
     console.error('OrderController.createOrder error:', err.message);

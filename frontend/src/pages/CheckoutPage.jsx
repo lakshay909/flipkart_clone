@@ -19,6 +19,7 @@ const CheckoutPage = () => {
   // Address form state
   const [address, setAddress] = useState({
     name: '',
+    email: '',
     phone: '',
     pincode: '',
     fullAddress: '',
@@ -59,6 +60,9 @@ const CheckoutPage = () => {
   const validate = () => {
     const newErrors = {};
     if (!address.name.trim()) newErrors.name = 'Name is required';
+    if (!address.email.trim()) newErrors.email = 'Email address is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address.email.trim()))
+      newErrors.email = 'Enter a valid email address';
     if (!address.phone.trim()) newErrors.phone = 'Phone number is required';
     else if (!/^\d{10}$/.test(address.phone.trim()))
       newErrors.phone = 'Enter a valid 10-digit phone number';
@@ -104,6 +108,7 @@ const CheckoutPage = () => {
       const response = await axios.post(`${API_URL}/orders`, {
         total_amount: Math.round(finalAmount),
         shipping_address: shippingAddress,
+        user_email: address.email,
       });
 
       const orderId = response.data.id || response.data.order_id || response.data.orderId;
@@ -250,6 +255,21 @@ const CheckoutPage = () => {
                     {errors.name && <span className="form-error">{errors.name}</span>}
                   </div>
 
+                  {/* Email */}
+                  <div className="form-group">
+                    <label className="form-label" htmlFor="email">Email Address *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className={`form-input ${errors.email ? 'form-input-error' : ''}`}
+                      placeholder="Order confirmation will be sent here"
+                      value={address.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && <span className="form-error">{errors.email}</span>}
+                  </div>
+
                   {/* Phone */}
                   <div className="form-group">
                     <label className="form-label" htmlFor="phone">Phone Number *</label>
@@ -338,6 +358,7 @@ const CheckoutPage = () => {
                   </div>
                   <p className="ck-address-full">{address.fullAddress}</p>
                   <p className="ck-address-phone">{address.phone}</p>
+                  <p className="ck-address-phone">📧 {address.email}</p>
                 </div>
               </div>
 
@@ -398,7 +419,7 @@ const CheckoutPage = () => {
                 {/* Order confirmation bar at bottom of items */}
                 <div className="ck-confirm-bar">
                   <p className="ck-confirm-text">
-                    Order confirmation email will be sent to your registered email address.
+                    Order confirmation email will be sent to <strong>{address.email}</strong>
                   </p>
                   <button
                     className="ck-confirm-btn-inline"
