@@ -1,0 +1,176 @@
+/* ─── ORDER SUCCESS PAGE ───────────────────────────────────────────────────── */
+
+/* Checkmark animation */
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.order-success-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 20px;
+}
+
+.order-success-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 48px 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  animation: fadeUp 0.5s ease-out;
+}
+
+/* ── Icon ── */
+.success-icon {
+  margin-bottom: 24px;
+  animation: scaleIn 0.6s ease-out;
+}
+
+.success-check-path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.6s ease-out 0.3s forwards;
+}
+
+/* ── Title ── */
+.success-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 6px;
+  animation: fadeUp 0.5s ease-out 0.2s both;
+}
+
+.success-subtitle {
+  font-size: 15px;
+  color: #878787;
+  margin-bottom: 24px;
+  animation: fadeUp 0.5s ease-out 0.3s both;
+}
+
+/* ── Order ID Box ── */
+.success-order-id-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: #f5faff;
+  border: 1px solid #d6e8ff;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  animation: fadeUp 0.5s ease-out 0.4s both;
+}
+
+.success-order-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #878787;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.success-order-id {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2874f0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+/* ── Info ── */
+.success-info {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  animation: fadeUp 0.5s ease-out 0.5s both;
+}
+
+/* ── Buttons ── */
+.success-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  animation: fadeUp 0.5s ease-out 0.6s both;
+}
+
+.success-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+.success-btn-primary {
+  background: #2874f0;
+  color: #fff;
+}
+
+.success-btn-primary:hover {
+  background: #1a5dc8;
+  box-shadow: 0 2px 8px rgba(40, 116, 240, 0.3);
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .order-success-card {
+    padding: 32px 20px;
+  }
+
+  .success-title {
+    font-size: 20px;
+  }
+
+  .success-actions {
+    flex-direction: column;
+  }
+
+  .success-btn {
+    justify-content: center;
+  }
+}

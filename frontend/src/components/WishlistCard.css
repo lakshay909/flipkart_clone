@@ -1,0 +1,172 @@
+.wishlist-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  padding: 16px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.wishlist-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border-color: #e0e0e0;
+}
+
+.wc-image-container {
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wc-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.wc-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 20px;
+}
+
+.wc-title {
+  color: #2874f0;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+
+.wc-title:hover {
+  text-decoration: underline;
+}
+
+.wc-assured {
+  margin-bottom: 8px;
+}
+
+.wc-assured img {
+  height: 20px;
+  object-fit: contain;
+}
+
+.wc-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.wc-final-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #212121;
+}
+
+.wc-original-price {
+  font-size: 14px;
+  color: #878787;
+  text-decoration: line-through;
+}
+
+.wc-discount-pct {
+  font-size: 14px;
+  color: #388e3c;
+  font-weight: 500;
+}
+
+.wc-actions {
+  position: relative;
+}
+
+.wc-delete-icon {
+  width: 20px;
+  height: 20px;
+  color: #c2c2c2;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.wc-delete-icon:hover {
+  color: #ff6161;
+}
+
+.wc-delete-popover {
+  position: absolute;
+  right: 0;
+  top: 32px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 16px;
+  width: 250px;
+  z-index: 10;
+  border-radius: 2px;
+}
+
+.wc-popover-triangle {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-top: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0;
+  transform: rotate(45deg);
+  z-index: 0;
+}
+
+.wc-popover-content {
+  position: relative;
+  z-index: 10;
+}
+
+.wc-popover-text {
+  color: #212121;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+.wc-popover-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wc-btn-cancel, .wc-btn-remove {
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.wc-btn-cancel {
+  color: #878787;
+}
+
+.wc-btn-cancel:hover {
+  color: #555;
+}
+
+.wc-btn-remove {
+  color: #ff6161;
+}
+
+.wc-btn-remove:hover {
+  color: #e53935;
+}

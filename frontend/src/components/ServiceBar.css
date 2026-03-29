@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   FLIPKART SERVICE BAR — Sub-header with Flipkart/Travel tabs + Location
+   Matches the real Flipkart top pill-switcher with live location display.
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.fk-servicebar {
+  position: fixed;
+  top: 56px; /* Directly below the 56px Navbar */
+  left: 0;
+  right: 0;
+  z-index: 998;
+  background: #ffffff;
+  border-bottom: 1px solid #efefef;
+  height: 44px;
+}
+
+.fk-servicebar-inner {
+  max-width: 1320px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* ─── TABS (Left side) ───────────────────────────────── */
+.fk-servicebar-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.fk-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.fk-tab:hover {
+  border-color: #bbb;
+  background: #fafafa;
+}
+
+/* Active Flipkart tab — Yellow pill */
+.fk-tab-flipkart.active {
+  background: #ffe500;
+  border-color: #ffe500;
+  color: #000;
+  box-shadow: 0 1px 4px rgba(255, 229, 0, 0.3);
+}
+
+.fk-tab-flipkart.active:hover {
+  background: #ffd900;
+  border-color: #ffd900;
+}
+
+.fk-tab-flogo {
+  flex-shrink: 0;
+}
+
+/* Travel tab */
+.fk-tab-travel {
+  color: #555;
+}
+
+.fk-tab-travel span {
+  color: #e53935;
+  font-weight: 600;
+}
+
+.fk-tab-plane {
+  flex-shrink: 0;
+}
+
+/* ─── LOCATION (Right side) ──────────────────────────── */
+.fk-location-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  max-width: 320px;
+  overflow: hidden;
+}
+
+.fk-location-btn:hover {
+  background: #f5f5f5;
+}
+
+.fk-location-pin {
+  flex-shrink: 0;
+}
+
+.fk-location-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Pulsing animation while locating */
+.fk-location-pulse {
+  animation: locationPulse 1.2s ease-in-out infinite;
+  color: #878787;
+}
+
+@keyframes locationPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .fk-servicebar {
+    height: 40px;
+  }
+
+  .fk-servicebar-inner {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .fk-tab {
+    padding: 5px 12px;
+    font-size: 13px;
+    gap: 4px;
+  }
+
+  .fk-tab-flogo {
+    width: 16px;
+    height: 16px;
+  }
+
+  .fk-tab-plane {
+    width: 14px;
+    height: 14px;
+  }
+
+  .fk-location-text {
+    font-size: 12px;
+    max-width: 140px;
+  }
+}

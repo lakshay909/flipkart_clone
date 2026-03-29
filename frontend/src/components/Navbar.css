@@ -1,0 +1,506 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   FLIPKART HEADER — 2-Row Layout (Pixel-Perfect)
+   ROW 1: Flipkart/Travel toggle pills  |  Live Location
+   ROW 2: Pill search bar (flex-grow)    |  Login · More · Cart
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.fk-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.fk-header-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ─── COMMON ROW ─────────────────────────────────────── */
+.fk-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fk-row-1 {
+  padding: 8px 0 4px;
+  gap: 16px;
+}
+
+.fk-row-2 {
+  padding: 4px 0 10px;
+  gap: 24px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROW 1 — LEFT: Flipkart & Travel Toggle Pills
+   ═══════════════════════════════════════════════════════ */
+.fk-row1-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Shared pill base */
+.fk-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 22px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
+}
+
+.fk-pill:active {
+  transform: scale(0.97);
+}
+
+/* Flipkart pill — Yellow, active */
+.fk-pill-flipkart {
+  background: #ffc200;
+  color: #0a0a0a;
+  box-shadow: 0 1px 3px rgba(255, 194, 0, 0.35);
+}
+
+.fk-pill-flipkart:hover {
+  box-shadow: 0 2px 8px rgba(255, 194, 0, 0.5);
+}
+
+.fk-pill-logo {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Travel pill — White/light */
+.fk-pill-travel {
+  background: #ffffff;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  padding: 6px 14px;
+}
+
+.fk-pill-travel:hover {
+  background: #fafafa;
+  border-color: #ccc;
+}
+
+.fk-pill-plane {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.fk-pill-travel-text {
+  height: 14px;
+  width: auto;
+  object-fit: contain;
+}
+
+.fk-travel-fallback {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e53935;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROW 1 — RIGHT: Location
+   ═══════════════════════════════════════════════════════ */
+.fk-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  max-width: 340px;
+  overflow: hidden;
+}
+
+.fk-location:hover {
+  background: #f5f5f5;
+}
+
+.fk-loc-pin {
+  flex-shrink: 0;
+}
+
+.fk-loc-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fk-loc-pulse {
+  animation: locPulse 1.2s ease-in-out infinite;
+  color: #878787;
+}
+
+@keyframes locPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROW 2 — LEFT: Search Bar
+   ═══════════════════════════════════════════════════════ */
+.fk-search {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #2874f0;
+  border-radius: 24px;
+  padding: 0 18px;
+  gap: 12px;
+  transition: box-shadow 0.2s ease;
+}
+
+.fk-search:focus-within {
+  box-shadow: 0 0 0 3px rgba(40, 116, 240, 0.12);
+}
+
+.fk-search-icon {
+  flex-shrink: 0;
+}
+
+.fk-search-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 400;
+  color: #212121;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fk-search-input::placeholder {
+  color: #878787;
+  font-size: 14px;
+}
+
+/* ─── SEARCH WRAPPER (relative anchor for dropdown) ── */
+.fk-search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 680px;
+}
+
+/* ─── AUTO-SUGGEST DROPDOWN ─────────────────────────── */
+.fk-suggest-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  max-height: 420px;
+  overflow-y: auto;
+  animation: fkSuggestSlide 0.15s ease-out;
+}
+
+@keyframes fkSuggestSlide {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fk-suggest-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 18px;
+  cursor: pointer;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background 0.12s ease;
+}
+
+.fk-suggest-item:last-child {
+  border-bottom: none;
+}
+
+.fk-suggest-item:hover {
+  background: #f5f7fa;
+}
+
+.fk-suggest-img-wrap {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fk-suggest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fk-suggest-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fk-suggest-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #212121;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fk-suggest-cat {
+  font-size: 12px;
+  font-weight: 400;
+  color: #2874f0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════
+   ROW 2 — RIGHT: Nav Items
+   ═══════════════════════════════════════════════════════ */
+.fk-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.fk-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+.fk-nav-item:hover {
+  color: #2874f0;
+}
+
+.fk-nav-item svg {
+  flex-shrink: 0;
+}
+
+
+
+.fk-nav-cart {
+  color: #212121;
+  font-weight: 600;
+}
+
+.fk-nav-cart:hover {
+  color: #2874f0;
+}
+
+/* ─── NAV DROPDOWN (hover-based) ────────────────────── */
+.fk-nav-dropdown-wrap {
+  position: relative;
+}
+
+.fk-nav-dropdown-wrap .fk-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 240px;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+  padding: 6px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  pointer-events: none;
+}
+
+.fk-nav-dropdown-wrap::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+}
+
+.fk-nav-dropdown-wrap:hover .fk-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.fk-nav-dropdown-wrap:hover .fk-chevron {
+  transform: rotate(180deg);
+}
+
+.fk-chevron {
+  margin-left: -2px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* Dropdown header — "New customer? Sign Up" */
+.fk-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  color: #878787;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fk-dropdown-signup {
+  color: #2874f0;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.fk-dropdown-signup:hover {
+  text-decoration: underline;
+}
+
+/* Section title (e.g. "More") */
+.fk-dropdown-section-title {
+  padding: 12px 18px 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #212121;
+  font-family: 'Roboto', sans-serif;
+  border-bottom: 1px solid #eee;
+}
+
+/* Individual dropdown item */
+.fk-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 18px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #212121;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
+}
+
+.fk-dropdown-item:hover {
+  background: #f5f7fa;
+}
+
+.fk-dropdown-item svg {
+  flex-shrink: 0;
+  color: #878787;
+  stroke: #878787;
+}
+
+.fk-dropdown-item:hover svg {
+  stroke: #2874f0;
+}
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .fk-nav-item:nth-child(2) {
+    /* Hide "More" on tablets */
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .fk-header-container {
+    padding: 0 10px;
+  }
+
+  .fk-row-1 {
+    gap: 8px;
+  }
+
+  .fk-row-2 {
+    gap: 12px;
+  }
+
+  .fk-pill {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .fk-pill-logo {
+    height: 18px;
+  }
+
+  .fk-pill-plane {
+    height: 18px;
+  }
+
+  .fk-search {
+    max-width: none;
+    height: 40px;
+    padding: 0 14px;
+  }
+
+  .fk-nav-item span {
+    display: none;
+  }
+
+  .fk-nav-cart span {
+    display: inline;
+  }
+
+  .fk-chevron {
+    display: none;
+  }
+
+  .fk-loc-text {
+    max-width: 130px;
+    font-size: 12px;
+  }
+}
