@@ -21,11 +21,12 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',   // Vite dev server default
   'http://localhost:3000',   // Alternate dev port
+  'https://flipkart-clone-zeta-jade.vercel.app', // Production Vercel URL
 ];
 
-// Add production frontend URL from env if it exists
+// Add production frontend URL from env if it exists (for dynamic changes)
 if (process.env.FRONTEND_URL) {
-  allowedOrigins.push(process.env.FRONTEND_URL);
+  allowedOrigins.push(process.env.FRONTEND_URL.replace(/\/$/, "")); // Remove trailing slash
 }
 
 app.use(cors({
