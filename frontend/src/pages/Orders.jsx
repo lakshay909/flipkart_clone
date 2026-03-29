@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import './Orders.css';
 
 // Initial Dummy Data (Will be replaced by API later)
@@ -52,14 +53,14 @@ const Orders = () => {
   const cancelOrder = (id) => {
     setOrders(orders.map(o => o.id === id ? { ...o, status: 'cancelled', statusLabel: 'Cancelled', canCancel: false } : o));
     setSelectedOrder(null);
-    alert('Order Cancelled');
+    toast.success('Order Cancelled');
   };
 
   const submitRating = () => {
-    if (ratingValue === 0) return alert('Please select stars');
+    if (ratingValue === 0) return toast.error('Please select stars');
     setRatings({ ...ratings, [ratingOrder.id]: ratingValue });
     setRatingOrder(null);
-    alert('Rating submitted!');
+    toast.success('Rating submitted!');
   };
 
   return (

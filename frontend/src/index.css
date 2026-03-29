@@ -1,6 +1,15 @@
 /* ─── CSS RESET & GLOBALS ──────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+:root {
+  --banner-height: 40px;
+}
+@media (max-width: 480px) {
+  :root {
+    --banner-height: 32px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -21,5 +30,5 @@ a {
 
 /* 2-row Header (88px) + Category Bar (~88px) = ~176px */
 .main-content {
-  padding-top: 180px;
+  padding-top: calc(180px + var(--banner-height, 0px));
 }

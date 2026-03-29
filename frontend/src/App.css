@@ -5,3 +5,33 @@
   width: 100%;
   min-height: 100vh;
 }
+
+/* ── Global Demo Banner ── */
+.demo-mode-banner {
+  background-color: #1a202c;
+  color: #ffffff;
+  text-align: center;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.3px;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--banner-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.demo-mode-banner strong {
+  font-weight: 600;
+  color: #fb641b;
+  margin: 0 4px;
+}
+
+@media (max-width: 480px) {
+  .demo-mode-banner {
+    font-size: 11px;
+  }
+}

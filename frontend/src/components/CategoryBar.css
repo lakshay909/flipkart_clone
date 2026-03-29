@@ -5,7 +5,7 @@
 
 .fk-catbar {
   position: fixed;
-  top: 88px; /* Below the 2-row header (row1 ~38px + row2 ~50px) */
+  top: calc(88px + var(--banner-height, 0px)); /* Below the 2-row header plus banner */
   left: 0;
   right: 0;
   z-index: 999;

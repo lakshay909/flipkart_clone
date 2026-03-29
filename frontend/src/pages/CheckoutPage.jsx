@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import './CheckoutPage.css';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -108,7 +109,7 @@ const CheckoutPage = () => {
       const orderId = response.data.id || response.data.order_id || response.data.orderId;
       navigate(`/order-success/${orderId}`);
     } catch (err) {
-      alert('Failed to place order. Please try again.');
+      toast.error('Failed to place order. Please try again.');
     } finally {
       setIsPlacingOrder(false);
     }

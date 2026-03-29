@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 import useWishlist from '../hooks/useWishlist';
 import './ProductDetail.css';
 
@@ -55,9 +56,9 @@ const ProductDetail = () => {
     try {
       setAddingToCart(true);
       await axios.post(`${API_URL}/cart`, { product_id: product.id, quantity: 1 });
-      alert('Added to cart!');
+      toast.success('Added to cart!');
     } catch (err) {
-      alert('Failed to add to cart. Please try again.');
+      toast.error('Failed to add to cart. Please try again.');
     } finally {
       setAddingToCart(false);
     }
@@ -68,7 +69,7 @@ const ProductDetail = () => {
       await axios.post(`${API_URL}/cart`, { product_id: product.id, quantity: 1 });
       navigate('/cart');
     } catch (err) {
-      alert('Something went wrong. Please try again.');
+      toast.error('Something went wrong. Please try again.');
     }
   };
 
