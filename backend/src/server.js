@@ -52,6 +52,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─── ROUTES ───────────────────────────────────────────────────────────────────
 
+// Root health check (Vercel will hit "/" to verify the function is alive)
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Flipkart Clone API is running 🚀' });
+});
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Flipkart Clone API is running 🚀' });
@@ -83,4 +88,14 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
+
+// ─── GLOBAL ERROR HANDLERS (prevent silent crashes) ──────────────────────────
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('❌ Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+process.on('uncaughtException', (err) => {
+  console.error('❌ Uncaught Exception:', err);
+  process.exit(1);
 });
