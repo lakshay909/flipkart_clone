@@ -8,3 +8,8 @@ backend/exit_log.txt
 backend/before_exit_log.txt
 backend/exit-tracer.js
 backend/test*.js
+backend/src/server_test.js
+backend/src/query_schema.js
+
+# Leftover sample code
+flipkart_clone_frontend_sample/

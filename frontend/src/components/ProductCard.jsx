@@ -17,11 +17,11 @@ const ProductCard = ({ product }) => {
   const [imgError, setImgError] = useState(false);
   const [wishlisted, toggleWishlist] = useWishlist(id);
 
-  // ── Yeh raha magic function jo page redirect hone se rokega ──
+  // Prevent click from bubbling up to the parent <Link> and triggering navigation
   const handleWishlistClick = (e) => {
     e.preventDefault(); 
     e.stopPropagation();
-    toggleWishlist(); // Uske baad tera custom hook call hoga
+    toggleWishlist();
   };
 
   // Handle image_urls as array OR image_url as string (backwards compatible)
@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
         {/* Wishlist Heart */}
         <button
           className={`pc-wishlist-btn ${wishlisted ? 'pc-wishlisted' : ''}`}
-          onClick={handleWishlistClick} // <-- Yahan function replace kar diya hai
+          onClick={handleWishlistClick}
           aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
         >
           <svg width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
